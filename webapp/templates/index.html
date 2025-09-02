@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MMOCR Text Detection — Live</title>
+    <style>
+      body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+      .wrap { display:flex; flex-direction:column; align-items:center; gap:12px; padding:16px; }
+      .stage { position:relative; width:min(96vw, 960px); }
+      video, canvas { width:100%; height:auto; border-radius:12px; }
+      #overlay { position:absolute; left:0; top:0; pointer-events:none; }
+      .row { display:flex; gap:8px; align-items:center; }
+      button { padding:8px 12px; border-radius:8px; border:1px solid #ddd; background:#111; color:#fff; cursor:pointer; }
+      button:disabled { opacity:0.5; cursor:not-allowed; }
+      .pill { padding:4px 8px; border-radius:999px; background:#eee; font-size:12px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h2>MMOCR Text Detection — Live</h2>
+
+      <div class="row">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn" disabled>Stop</button>
+        <span class="pill" id="fps">FPS: 0</span>
+        <span class="pill" id="status">Idle</span>
+      </div>
+
+      <div class="stage">
+        <video id="cam" autoplay playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <canvas id="capture" style="display:none"></canvas>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
