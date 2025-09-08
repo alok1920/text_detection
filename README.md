@@ -20,3 +20,18 @@ textcam_flask/
 │  └─ index.html               # video element + overlay canvas
 └─ static/
    └─ app.js     
+
+
+   🧪 How to run and test
+From project root:
+export FLASK_APP=webapp/app.py
+python webapp/app.py
+Open http://localhost:5000.
+Click Start → browser asks camera permission → you should see boxes appear over text in view.
+
+virtual env == mmocr-webapp
+
+Now in a new machine/repo:
+python -m venv venv
+source venv/bin/activate   # (or .\venv\Scripts\activate on Windows)
+pip install -r requirements.txt
