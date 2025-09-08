@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Run MMOCR text detection on a single image or a folder of images.
-
-Usage:
-  python scripts/infer_image.py --input path/to/img_or_folder \
-                                --out outputs/preds.jsonl \
-                                --min_score 0.3
-"""
 from __future__ import annotations
 from pathlib import Path
 import argparse
@@ -16,7 +8,6 @@ from detector.runner import DetectText
 
 
 def iter_images(p: Path):
-    """Yield image Paths from a file or (recursively) from a folder."""
     exts = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
     if p.is_file():
         if p.suffix.lower() in exts:
@@ -28,7 +19,6 @@ def iter_images(p: Path):
 
 
 def main():
-    # --- CLI arguments ---
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True, help="Image file or folder")
     ap.add_argument("--out", default="outputs/preds.jsonl", help="JSONL output path")
@@ -38,16 +28,14 @@ def main():
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # --- Load detector once ---
     det = DetectText()
 
     n_imgs = 0
     n_boxes_total = 0
 
-    # --- Process images and write JSONL ---
     with out_path.open("w", encoding="utf-8") as f:
         for img_path in iter_images(Path(args.input)):
-            res = det.run_on_image(str(img_path))  # {"boxes":[...], "input_size":{...}}
+            res = det.run_on_image(str(img_path)) 
             boxes = [b for b in res["boxes"] if b["score"] >= args.min_score]
             n_boxes_total += len(boxes)
 
