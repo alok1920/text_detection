@@ -29,10 +29,6 @@ markdown-it-py==4.0.0
 MarkupSafe==3.0.2
 matplotlib==3.10.6
 mdurl==0.1.2
-mmcv==2.1.0
-mmdet==3.3.0
-mmengine==0.10.3
--e git+https://github.com/open-mmlab/mmocr.git@966296f26ac34cf0e96d40ab4a0a94c9a697909a#egg=mmocr
 model-index==0.1.11
 mpmath==1.3.0
 networkx==3.4.2
