@@ -1,0 +1,6 @@
+# installers / large binaries
+Miniconda3-latest-*.sh
+Miniforge3-*.sh
+*.pkg
+*.dmg
+*.exe
