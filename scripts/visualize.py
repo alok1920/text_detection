@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""
-Draw polygons from preds.jsonl onto images and save visualizations.
-
-Usage:
-  python scripts/visualize.py \
-      --preds outputs/preds.jsonl \
-      --out_dir outputs/vis \
-      --hide_scores   # optional flag to hide score text
-"""
 from __future__ import annotations
 from pathlib import Path
 import argparse
@@ -20,12 +11,6 @@ from detector.config import CFG
 
 
 def draw_polys(img, boxes, draw_scores=True, color=(0, 255, 0)):
-    """
-    img: BGR image (OpenCV)
-    boxes: [{"points": [[x,y],...], "score": float}, ...]
-    draw_scores: write confidence near the first vertex
-    color: BGR line color
-    """
     for b in boxes:
         pts = np.array(b["points"], dtype=np.int32).reshape(-1, 1, 2)
         cv2.polylines(img, [pts], isClosed=True, color=color, thickness=CFG.line_thickness)
