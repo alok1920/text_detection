@@ -1,37 +1,66 @@
-mmocr_detect/
-├─ detector/
-│  ├─ __init__.py
-│  ├─ config.py          # all knobs live here (model name, device, thresholds, paths)
-│  └─ runner.py          # small “DetectText” class that wraps MMOCR and postprocess
-├─ scripts/
-│  ├─ infer_image.py     # CLI: run on a single image or folder
-│  └─ visualize.py       # CLI: draw polygons and save result
-└─ outputs/
-   ├─ preds.jsonl        # one line per input {file, polys, scores}
-   └─ vis/               # rendered images with overlays
+````
+# 📸 Live Text Detection Web App
 
-Layout 2
-textcam_flask/
-├─ app.py                      # Flask app; creates global detector; exposes routes
-├─ detector/                   # re-use from Stage 1 (symlink/copy)
-│  ├─ config.py
-│  └─ runner.py
+A simple Flask + JavaScript project that shows real-time text detection directly in your browser.  
+Open the page, allow camera access, and watch as boxes appear over text.
+
+---
+
+## 🚀 Quickstart
+
+1. Create and activate a virtual environment:
+   ```
+   python -m venv .venv
+   source .venv/bin/activate
+````
+
+2. Install dependencies:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. Run the Flask app:
+
+   ```
+   python webapp/app.py
+   ```
+
+4. Open your browser at:
+   👉 [http://localhost:5000](http://localhost:5000)
+
+---
+
+## ✨ Features
+
+* Live camera preview in the browser
+* Server-side text detection API
+* Boxes and confidence scores drawn in real-time
+* Start/Stop controls, FPS counter, and status display
+
+---
+
+## 📂 Project Structure
+
+```
+webapp/
+├─ app.py              # Flask backend
 ├─ templates/
-│  └─ index.html               # video element + overlay canvas
+│  └─ index.html       # Webpage UI
 └─ static/
-   └─ app.js     
+   └─ app.js           # Camera + overlay logic
+requirements.txt
+```
 
+---
 
-   🧪 How to run and test
-From project root:
-export FLASK_APP=webapp/app.py
-python webapp/app.py
-Open http://localhost:5000.
-Click Start → browser asks camera permission → you should see boxes appear over text in view.
+## 📜 License
 
-virtual env == mmocr-webapp
+This project is open-sourced under the MIT License. Feel free to use and adapt!
 
-Now in a new machine/repo:
-python -m venv venv
-source venv/bin/activate   # (or .\venv\Scripts\activate on Windows)
-pip install -r requirements.txt
+```
+
+---
+
+👉 Would you like me to also add **some nice badges** (Python version, Flask, License) at the top to make it look more “GitHub-ready”?
+```
